@@ -43,6 +43,25 @@ run(function () {
                 path += location + "&sensor=false";
 
                 x$('img#static_map').attr('src', path);
+                
+                $.ajax({
+                    url: "http://maps.googleapis.com/maps/api/directions/json?origin=Chicago,IL&destination=Los+Angeles,CA&waypoints=Joplin,MO|Oklahoma+City,OK&sensor=false"
+                        dataType: "json",
+                        headers: {"Accept": "text/html, application/json"},
+                        success: function(response) {
+                            Alert('ok');
+                        },
+                        error: function(request, status, error) {
+                        	Alert(error);
+                          console.log("Error status " + status);
+                          console.log("Error request status text: " + request.statusText);
+                          console.log("Error request status: " + request.status);
+                          console.log("Error request response text: " + request.responseText);
+                          console.log("Error response header: " + request.getAllResponseHeaders());
+                          console.log("Error error: " + error);
+                        }
+                      });
+                
             });
         });
     });
